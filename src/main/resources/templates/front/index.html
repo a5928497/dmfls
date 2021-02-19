@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>多妈复利社</title>
+
+    <link th:href="@{/webjars/bootstrap/3.1.1/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/webjars/font-awesome/4.7.0/css/font-awesome.min.css}" rel="stylesheet">
+
+    <link th:href="@{/css/front/index.css}"  rel="stylesheet">
+
+</head>
+
+<body>
+    <div id="bannerContainer">
+        <img id="bannerImg" th:src="@{/elements/banner.jpg}">
+    </div>
+    <div id="titleContainer">
+        <p id="title">多妈复利社福利开户渠道</p>
+    </div>
+    <div class="noticeContainer" th:each="sc:${scs}">
+        <div class="iconsContainer">
+            <img th:src="${sc.imgUrl}" class="icons">
+        </div>
+        <text class="importantNotice">
+            <span th:text="${sc.name}" class="sc_name">华泰证券</span>
+            <span class="sc_ins" th:each="in:${ins}" th:text="@{▪}+${in.des}" th:if="${in.securities.id == sc.id}">首次入金≥2万港币</span>
+
+        </text>
+        <p class="details">
+            <span th:each="detail:${details}" th:text="@{▪}+${detail.des}" th:if="${detail.securities.id == sc.id}"></span>
+        </p>
+        <button class="opBtn" th:attr="opUrl=${sc.opUrl}">点击进入开户</button>
+    </div>
+
+
+    <script type="text/javascript" th:src="@{/webjars/jquery/1.11.1/jquery.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/front/index.js}" ></script>
+</body>
+
+</html>
