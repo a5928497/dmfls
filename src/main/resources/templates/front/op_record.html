@@ -13,21 +13,21 @@
     <!--版头组件-->
     <div th:replace="commons/banner_tem::banner_tem"></div>
     <p id="op_notice" th:text="${notice}"></p>
-    <form>
+    <form method="post" action="/oprecord" modelAttribute="client">
         <div class="formContainer">
-            <label>姓名：</label><input type="text" class="input_area" placeholder="中英文姓名均可">
+            <label>姓名：</label><input type="text" class="input_area" name="name" placeholder="中英文姓名均可">
         </div>
         <div class="formContainer">
-            <label>电话：</label><input type="tel" class="input_area" placeholder="11位手机号码即可">
+            <label>电话：</label><input type="tel" class="input_area" name="phone" placeholder="11位手机号码即可">
         </div>
         <div class="formContainer">
-            <label>邮箱：</label><input type="email" class="input_area" placeholder="请输入注册邮箱">
+            <label>邮箱：</label><input type="email" class="input_area" name="email" placeholder="请输入注册邮箱">
         </div>
         <div class="formContainer">
             <label>请选择已完成开户的券商</label>
             <div class="checkContainer">
                 <span th:each="sc:${scs}">
-                    <input type="checkbox" class="securities"  th:name="sc" th:value="${sc.id}" th:text="${sc.name}">
+                    <input type="checkbox" class="securities"  name="securities" th:value="${sc.id}" th:text="${sc.name}">
                 </span>
 
             </div>

@@ -17,11 +17,8 @@ public class Client {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
-	@Column(name = "NAME_CN")
-	private String name_CN;
-
-	@Column(name = "NAME_EN")
-	private String name_EN;
+	@Column(name = "NAME")
+	private String name;
 
 	@Column(name = "EMAIL")
 	private String email;

@@ -1,5 +1,6 @@
 package com.yukoon.dmfls.Controllers;
 
+import com.yukoon.dmfls.Entities.Client;
 import com.yukoon.dmfls.Entities.Details;
 import com.yukoon.dmfls.Entities.ImportantNotice;
 import com.yukoon.dmfls.Entities.Securities;
@@ -9,6 +10,8 @@ import com.yukoon.dmfls.Services.SCServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 import java.util.Map;
@@ -42,5 +45,12 @@ public class FontController {
 		map.put("scs",securities);
 		map.put("notice",notice);
 		return "front/op_record.html";
+	}
+
+	//接受开户信息
+	@PostMapping("/oprecord")
+	public String record(Client client, @RequestParam("securities") Integer[] securities) {
+
+		return "redirect:/oprecord";
 	}
 }
