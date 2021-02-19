@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
-public class IndexController {
+public class FontController {
 	@Autowired
 	private SCServices scServices;
 	@Autowired
@@ -22,6 +22,7 @@ public class IndexController {
 	@Autowired
 	private INService inService;
 
+	private final static String notice = "请填写正确的信息，以便多妈团队核实后返还相应的福利，若遇到问题请添加微信号dmzl9999与小助理取得联系，谢谢！";
 	//进入主页
 	@GetMapping("/index")
 	public String index(Map<String,Object> map) {
@@ -32,5 +33,14 @@ public class IndexController {
 		map.put("ins",importantNotices);
 		map.put("details",details);
 		return "front/index.html";
+	}
+
+//	进入开户信息登记页
+	@GetMapping("/oprecord")
+	public String opRecord(Map<String,Object>map) {
+		List<Securities> securities = scServices.findAllSC();
+		map.put("scs",securities);
+		map.put("notice",notice);
+		return "front/op_record.html";
 	}
 }

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link th:href="@{/webjars/bootstrap/3.1.1/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/webjars/font-awesome/4.7.0/css/font-awesome.min.css}" rel="stylesheet">
+    <link th:href="@{/css/commons/banner_tem.css}"  rel="stylesheet">
+    <link th:href="@{/css/front/op_record.css}"  rel="stylesheet">
+    <title>多妈复利社</title>
+</head>
+<body>
+    <!--版头组件-->
+    <div th:replace="commons/banner_tem::banner_tem"></div>
+    <p id="op_notice" th:text="${notice}"></p>
+    <form>
+        <div class="formContainer">
+            <label>姓名：</label><input type="text" class="input_area" placeholder="中英文姓名均可">
+        </div>
+        <div class="formContainer">
+            <label>电话：</label><input type="tel" class="input_area" placeholder="11位手机号码即可">
+        </div>
+        <div class="formContainer">
+            <label>邮箱：</label><input type="email" class="input_area" placeholder="请输入注册邮箱">
+        </div>
+        <div class="formContainer">
+            <label>请选择已完成开户的券商</label>
+            <div class="checkContainer">
+                <span th:each="sc:${scs}">
+                    <input type="checkbox" class="securities"  th:name="sc" th:value="${sc.id}" th:text="${sc.name}">
+                </span>
+
+            </div>
+        </div>
+        <div class="formContainer">
+            <button type="submit" class="btn btn-primary block full-width m-b">提交</button>
+        </div>
+
+    </form>
+
+    <script type="text/javascript" th:src="@{/webjars/jquery/1.11.1/jquery.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/front/op_record.js}" ></script>
+</body>
+</html>

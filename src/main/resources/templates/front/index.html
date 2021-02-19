@@ -10,18 +10,14 @@
 
     <link th:href="@{/webjars/bootstrap/3.1.1/css/bootstrap.min.css}" rel="stylesheet">
     <link th:href="@{/webjars/font-awesome/4.7.0/css/font-awesome.min.css}" rel="stylesheet">
-
+    <link th:href="@{/css/commons/banner_tem.css}"  rel="stylesheet">
     <link th:href="@{/css/front/index.css}"  rel="stylesheet">
 
 </head>
 
 <body>
-    <div id="bannerContainer">
-        <img id="bannerImg" th:src="@{/elements/banner.jpg}">
-    </div>
-    <div id="titleContainer">
-        <p id="title">多妈复利社福利开户渠道</p>
-    </div>
+    <!--版头组件-->
+    <div th:replace="commons/banner_tem::banner_tem"></div>
     <div class="noticeContainer" th:each="sc:${scs}">
         <div class="iconsContainer">
             <img th:src="${sc.imgUrl}" class="icons">
