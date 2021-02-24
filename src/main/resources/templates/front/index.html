@@ -30,7 +30,7 @@
         <p class="details">
             <span th:each="detail:${details}" th:text="@{▪}+${detail.des}" th:if="${detail.securities.id == sc.id}"></span>
         </p>
-        <button class="opBtn" th:attr="opUrl=${sc.opUrl}">点击进入开户</button>
+        <button class="opBtn" th:attr="opUrl=${sc.opUrl}" th:text="${null == sc.opBtnText}?@{点击进入开户}:${sc.opBtnText}"></button>
     </div>
 
 

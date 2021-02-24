@@ -1,18 +1,14 @@
 package com.yukoon.dmfls.Controllers;
 
-import com.yukoon.dmfls.Entities.Client;
-import com.yukoon.dmfls.Entities.Details;
-import com.yukoon.dmfls.Entities.ImportantNotice;
-import com.yukoon.dmfls.Entities.Securities;
-import com.yukoon.dmfls.Services.DetailsService;
-import com.yukoon.dmfls.Services.INService;
-import com.yukoon.dmfls.Services.SCServices;
+import com.yukoon.dmfls.Entities.*;
+import com.yukoon.dmfls.Services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -24,6 +20,10 @@ public class FontController {
 	private DetailsService detailsService;
 	@Autowired
 	private INService inService;
+	@Autowired
+	private ClientService clientService;
+	@Autowired
+	private OpenRecordService openRecordService;
 
 	private final static String notice = "请填写正确的信息，以便多妈团队核实后返还相应的福利，若遇到问题请添加微信号dmzl9999与小助理取得联系，谢谢！";
 	//进入主页
@@ -50,7 +50,22 @@ public class FontController {
 	//接受开户信息
 	@PostMapping("/oprecord")
 	public String record(Client client, @RequestParam("securities") Integer[] securities) {
-
+		Client old = clientService.findByEmailAndPhoneAndName(client.getEmail(),client.getPhone(),client.getName());
+		List<OpenRecord> openRecords = new ArrayList<>();
+		//客户是否第一次进行登记
+		if (null == old) {
+			client = clientService.save(client);
+		}else {
+			client = old;
+		}
+		for (Integer sc:securities){
+			OpenRecord openRecord = new OpenRecord();
+			Securities scs = new Securities();
+			scs.setId(sc);
+			openRecord.setIs_open(0).setClient(client).setSecurities(scs);
+			openRecords.add(openRecord);
+		}
+		openRecords = openRecordService.saveOpenRecords(openRecords);
 		return "redirect:/oprecord";
 	}
 }

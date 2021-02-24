@@ -30,6 +30,9 @@ public class SCServices {
 
 	//增加&修改券商，顺带重排展示序列
 	public Securities saveSC(Securities securities) {
+		if (securities.getOpBtnText() == "") {
+			securities.setOpBtnText(null);
+		}
 		securities = scOrderResort(securities);
 		return  securityRepo.save(securities);
 	}

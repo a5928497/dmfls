@@ -30,6 +30,8 @@ public class Securities implements Comparable<Securities>{
 	@Column(name = "IMG_URL")
 	private String imgUrl;
 
+	@Column(name = "OP_BTN_TEXT")
+	private String opBtnText;
 
 	@Override
 	public int compareTo(Securities o) {
