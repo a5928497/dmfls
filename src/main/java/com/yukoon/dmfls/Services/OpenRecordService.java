@@ -16,4 +16,16 @@ public class OpenRecordService {
         openRecords = openRecordRepo.save(openRecords);
         return openRecords;
     }
+
+    //true为已存在,false为不存在
+    public boolean is_existed(Integer clientId,Integer SCId) {
+        boolean result = false;
+        result = findAllBySCIdAndClientId(clientId,SCId).size() > 0;
+        return  result;
+    }
+
+    public List<OpenRecord> findAllBySCIdAndClientId(Integer clientId,Integer SCId) {
+        List<OpenRecord> openRecords = openRecordRepo.findAllByClientIdAndSecuritiesId(clientId,SCId);
+        return openRecords;
+    }
 }

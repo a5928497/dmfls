@@ -52,6 +52,7 @@ public class FontController {
 	public String record(Client client, @RequestParam("securities") Integer[] securities) {
 		Client old = clientService.findByEmailAndPhoneAndName(client.getEmail(),client.getPhone(),client.getName());
 		List<OpenRecord> openRecords = new ArrayList<>();
+		String message = "";
 		//客户是否第一次进行登记
 		if (null == old) {
 			client = clientService.save(client);
@@ -59,11 +60,14 @@ public class FontController {
 			client = old;
 		}
 		for (Integer sc:securities){
-			OpenRecord openRecord = new OpenRecord();
-			Securities scs = new Securities();
-			scs.setId(sc);
-			openRecord.setIs_open(0).setClient(client).setSecurities(scs);
-			openRecords.add(openRecord);
+			//查询记录是否存在，若不存在则添加
+			if (!(openRecordService.is_existed(client.getId(),sc))){
+				OpenRecord openRecord = new OpenRecord();
+				Securities scs = new Securities();
+				scs.setId(sc);
+				openRecord.setIs_open(0).setClient(client).setSecurities(scs);
+				openRecords.add(openRecord);
+			}
 		}
 		openRecords = openRecordService.saveOpenRecords(openRecords);
 		return "redirect:/oprecord";
