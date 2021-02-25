@@ -18,6 +18,9 @@
 <body>
     <!--版头组件-->
     <div th:replace="commons/banner_tem::banner_tem"></div>
+    <a id="oprecord_entrance_container" th:href="@{/oprecord}">
+        <p>如完成开户的小伙伴请<span>点击此处进行登记</span>，以便多妈团队进行后续跟进服务谢谢！</p>
+    </a>
     <div class="noticeContainer" th:each="sc:${scs}">
         <div class="iconsContainer">
             <img th:src="${sc.imgUrl}" class="icons">

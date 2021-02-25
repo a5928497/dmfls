@@ -2,7 +2,20 @@ body {
     width:375px;
     /*background-color: #fae7d9;*/
 }
-
+#oprecord_entrance_container{
+    width: 375px;
+    height: 50px;
+    text-decoration: none;
+}
+#oprecord_entrance_container p{
+    width: 300px;
+    margin: 0 auto;
+}
+#oprecord_entrance_container p span {
+    font-size: large;
+    color: red;
+    font-weight: 800;
+}
 .noticeContainer{
     width: 375px;
     word-break: break-all;

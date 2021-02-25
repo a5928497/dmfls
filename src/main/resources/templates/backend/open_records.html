@@ -63,12 +63,12 @@
                                     <td th:text="${openRecord.client.email}">email</td>
                                     <td th:text="${openRecord.securities.name}">scname</td>
                                     <td th:text="${openRecord.date}">date</td>
-                                    <td th:text="${openRecord.is_open ==0}?未确认:已确认">is_open</td>
+                                    <td th:id="@{is_open}+${openRecord.id}" th:text="${openRecord.is_open ==0}?未确认:已确认">is_open</td>
                                     <td>
                                         <a th:href="@{/sc/}"><button class="btn btn-sm">编辑</button></a>
                                     </td>
                                     <td>
-                                        <a th:href="@{/comfirmopen/}+${openRecord.id}"><button class="btn btn-sm">确认开户</button></a>
+                                        <a id="confirm" th:href="@{/confirmopen/}+${openRecord.id}"><button class="btn btn-sm">确认开户</button></a>
                                     </td>
                                 </tr>
                                 </tbody>
@@ -92,6 +92,7 @@
 
 <!-- Mainly scripts -->
 <script type="text/javascript" th:src="@{/webjars/jquery/1.11.1/jquery.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/backend/open_records.js}" ></script>
 <script type="text/javascript" th:src="@{/webjars/bootstrap/3.1.1/js/bootstrap.min.js}"></script>
 
 </body>

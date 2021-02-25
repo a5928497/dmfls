@@ -1,5 +1,7 @@
 package com.yukoon.dmfls.Controllers;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.yukoon.dmfls.Entities.OpenRecord;
 import com.yukoon.dmfls.Services.OpenRecordService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,11 +47,13 @@ public class OpenRecordController {
 
     @ResponseBody
     @GetMapping("/confirmopen/{orId}")
-    public String comfirmOpen(@PathVariable("orId")Integer orId){
+    public String comfirmOpen(@PathVariable("orId")Integer orId) throws JsonProcessingException {
         OpenRecord openRecord = openRecordService.findById(orId);
         openRecord.setIs_open(1);
         openRecordService.save(openRecord);
-        return null;
+        ObjectMapper objectMapper = new ObjectMapper();
+        String opRecordtoStr = objectMapper.writeValueAsString(openRecord);
+        return opRecordtoStr;
     }
 
 }
