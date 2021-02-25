@@ -13,7 +13,7 @@
     <!--版头组件-->
     <div th:replace="commons/banner_tem::banner_tem"></div>
     <p id="op_notice" th:text="${notice}"></p>
-    <form method="post" action="/oprecord" modelAttribute="client">
+    <form method="post" action="/oprecord" modelAttribute="client" id="opRecordForm">
         <div class="formContainer">
             <label>姓名：</label><input type="text" class="input_area" name="name" placeholder="中英文姓名均可">
         </div>
@@ -33,7 +33,7 @@
             </div>
         </div>
         <div class="formContainer">
-            <button type="submit" class="btn btn-primary block full-width m-b">提交</button>
+            <button type="submit" id="submitBtn" class="btn btn-primary block full-width m-b">提交</button>
         </div>
 
     </form>

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 import java.util.Map;
@@ -42,8 +43,13 @@ public class OpenRecordController {
         return "backend/open_records.html";
     }
 
+    @ResponseBody
     @GetMapping("/confirmopen/{orId}")
     public String comfirmOpen(@PathVariable("orId")Integer orId){
+        OpenRecord openRecord = openRecordService.findById(orId);
+        openRecord.setIs_open(1);
+        openRecordService.save(openRecord);
         return null;
     }
+
 }

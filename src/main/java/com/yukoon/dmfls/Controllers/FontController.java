@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -50,13 +51,16 @@ public class FontController {
 	}
 
 	//接受开户信息
+	@ResponseBody
 	@PostMapping("/oprecord")
 	public String record(Client client, @RequestParam("securities") Integer[] securities) {
 		Client old = clientService.findByEmailAndPhoneAndName(client.getEmail(),client.getPhone(),client.getName());
 		List<OpenRecord> openRecords = new ArrayList<>();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         String date = simpleDateFormat.format(new Date());
-		String message = "";
+		String message = "登记成功";
+		String success = "";
+		String exists = "";
 		//客户是否第一次进行登记
 		if (null == old) {
 			client = clientService.save(client);
@@ -74,6 +78,7 @@ public class FontController {
 			}
 		}
 		openRecords = openRecordService.saveOpenRecords(openRecords);
-		return "redirect:/oprecord";
+//		return "redirect:/oprecord";
+		return message;
 	}
 }
