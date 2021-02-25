@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>DashBoard</title>
+    <title>OpenRecord</title>
 
     <link th:href="@{/webjars/bootstrap/3.1.1/css/bootstrap.min.css}" rel="stylesheet">
     <link th:href="@{/webjars/font-awesome/4.7.0/css/font-awesome.min.css}" rel="stylesheet">
@@ -31,41 +31,44 @@
             </div>
         </div>
         <div class="wrapper wrapper-content animated fadeInRight">
-            <a th:href="@{/sc}"><button type="button" class="btn btn-primary">添加券商</button></a>
+            <a th:href="@{/allSC}"><button type="button" class="btn btn-primary" th:if="${order != 'ALL'}">返回</button></a>
+            <a th:href="@{/SCall/}+${scId}"><button type="button" class="btn btn-primary" th:if="${order != 'ALL'}">查看全部</button></a>
+            <a th:href="@{/SCnotopen/}+${scId}"><button type="button" class="btn btn-primary" th:if="${order != 'NOT_OPEN'}">未开户</button></a>
+            <a th:href="@{/SCopen/}+${scId}"><button type="button" class="btn btn-primary" th:if="${order != 'OPEN'}">已开户</button></a>
             <div class="border"></div>
             <div class="row">
                 <div class="col-lg-12">
                     <div class="ibox float-e-margins">
                         <div class="ibox-title">
-                            <h5>券商名单</h5>
+                            <h5>开户记录</h5>
                         </div>
                         <div class="ibox-content">
 
                             <table class="footable table table-stripped toggle-arrow-tiny">
                                 <thead>
                                 <tr>
+                                    <th data-hide="all">客户名</th>
+                                    <th data-hide="all">客户手机</th>
+                                    <th data-hide="all">客户邮箱</th>
                                     <th data-hide="all">券商名</th>
-                                    <th data-hide="all">展示排序</th>
-                                    <th data-hide="all">开户url</th>
+                                    <th data-hide="all">登记日期</th>
+                                    <th data-hide="all">开户状态</th>
                                     <th>操作</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr th:each="sc:${SCs}">
-                                    <td th:text="${sc.name}">name</td>
-                                    <td th:text="${sc.order}">name</td>
-                                    <td th:text="${sc.opUrl}">url</td>
+                                <tr th:each="openRecord:${openRecords}">
+                                    <td th:text="${openRecord.client.name}">name</td>
+                                    <td th:text="${openRecord.client.phone}">phone</td>
+                                    <td th:text="${openRecord.client.email}">email</td>
+                                    <td th:text="${openRecord.securities.name}">scname</td>
+                                    <td th:text="${openRecord.date}">date</td>
+                                    <td th:text="${openRecord.is_open ==0}?未确认:已确认">is_open</td>
                                     <td>
-                                        <a th:href="@{/sc/}+${sc.id}"><button class="btn btn-sm">编辑</button></a>
+                                        <a th:href="@{/sc/}"><button class="btn btn-sm">编辑</button></a>
                                     </td>
                                     <td>
-                                        <a th:href="@{/allIn/}+${sc.id}"><button class="btn btn-sm">查看亮点</button></a>
-                                    </td>
-                                    <td>
-                                        <a th:href="@{/allDetails/}+${sc.id}"><button class="btn btn-sm">查看详情</button></a>
-                                    </td>
-                                    <td>
-                                        <a th:href="@{/SCnotopen/}+${sc.id}"><button class="btn btn-sm">开户情况</button></a>
+                                        <a th:href="@{/allIn/}+${sc.id}"><button class="btn btn-sm">确认开户</button></a>
                                     </td>
                                 </tr>
                                 </tbody>

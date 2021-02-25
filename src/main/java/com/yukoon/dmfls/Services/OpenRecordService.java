@@ -18,14 +18,25 @@ public class OpenRecordService {
     }
 
     //true为已存在,false为不存在
-    public boolean is_existed(Integer clientId,Integer SCId) {
+    public boolean is_existed(Integer clientId, Integer SCId) {
         boolean result = false;
-        result = findAllBySCIdAndClientId(clientId,SCId).size() > 0;
-        return  result;
+        result = findAllBySCIdAndClientId(clientId, SCId).size() > 0;
+        return result;
     }
 
-    public List<OpenRecord> findAllBySCIdAndClientId(Integer clientId,Integer SCId) {
-        List<OpenRecord> openRecords = openRecordRepo.findAllByClientIdAndSecuritiesId(clientId,SCId);
+    public List<OpenRecord> findAllBySCIdAndClientId(Integer clientId, Integer SCId) {
+        List<OpenRecord> openRecords = openRecordRepo.findAllByClientIdAndSecuritiesId(clientId, SCId);
         return openRecords;
+    }
+
+    public List<OpenRecord> queryOpenRecordBySecurities(Integer SCId, String order) {
+        switch (order) {
+            case "OPEN":
+                return openRecordRepo.findAllOpenBySecuritiesId(SCId);
+            case "NOT_OPEN":
+                return openRecordRepo.findNotOpenBySecuritiesId(SCId);
+            default:
+                return openRecordRepo.findAllBySecuritiesId(SCId);
+        }
     }
 }

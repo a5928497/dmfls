@@ -8,7 +8,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -52,6 +54,8 @@ public class FontController {
 	public String record(Client client, @RequestParam("securities") Integer[] securities) {
 		Client old = clientService.findByEmailAndPhoneAndName(client.getEmail(),client.getPhone(),client.getName());
 		List<OpenRecord> openRecords = new ArrayList<>();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String date = simpleDateFormat.format(new Date());
 		String message = "";
 		//客户是否第一次进行登记
 		if (null == old) {
@@ -65,7 +69,7 @@ public class FontController {
 				OpenRecord openRecord = new OpenRecord();
 				Securities scs = new Securities();
 				scs.setId(sc);
-				openRecord.setIs_open(0).setClient(client).setSecurities(scs);
+				openRecord.setIs_open(0).setClient(client).setSecurities(scs).setDate(date);
 				openRecords.add(openRecord);
 			}
 		}

@@ -28,4 +28,7 @@ public class OpenRecord {
 	@ManyToOne
 	@JoinColumn(name = "SC_ID")
 	private Securities securities;
+
+	@Column(name = "OPEN_DATE")
+	private String date;
 }
