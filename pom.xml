@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.yukoon</groupId>
 	<artifactId>dmfls</artifactId>
@@ -200,6 +200,7 @@
 	</dependencies>
 
 	<build>
+		<finalName>dmfls</finalName>
 		<resources>
 			<resource>
 				<directory>src/main/java</directory>
@@ -230,12 +231,13 @@
 			<!--</resource>-->
 		</resources>
 		<plugins>
+			<!--
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jar-plugin</artifactId>
 				<version>3.0.2</version>
 				<configuration>
-					<finalName>Dmfls</finalName>
+					<finalName>dmfls</finalName>
 					<archive>
 						<manifest>
 							<addClasspath>true</addClasspath>
@@ -271,6 +273,7 @@
 					</execution>
 				</executions>
 			</plugin>
+			-->
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
@@ -340,13 +343,13 @@
 					<forceTags>true</forceTags>
 					<noCache>true</noCache>
 					<buildArgs>
-						<FINAL_NAME>${project.artifactId}-${project.version}-distribution.tar.gz</FINAL_NAME>
+						<JAR_FILE>${project.build.finalName}.jar</JAR_FILE>
 					</buildArgs>
 					<resources>
 						<resource>
 							<targetPath>/</targetPath>
 							<directory>${project.build.directory}</directory>
-							<include>${project.artifactId}-${project.version}-distribution.tar.gz</include>
+							<include>${project.build.finalName}.jar</include>
 						</resource>
 					</resources>
 				</configuration>
@@ -392,12 +395,12 @@
 		<repository>
 			<id>releases</id>
 			<name>Releases Repository</name>
-			<url>http://192.168.1.10:8181/repository/maven-releases/</url>
+			<url>http://192.168.2.10:8181/repository/maven-releases/</url>
 		</repository>
 		<snapshotRepository>
 			<id>snapshots</id>
 			<name>Snapshots Repository</name>
-			<url>http://192.168.1.10:8181/repository/maven-snapshots/</url>
+			<url>http://192.168.2.10:8181/repository/maven-snapshots/</url>
 		</snapshotRepository>
 	</distributionManagement>
 
