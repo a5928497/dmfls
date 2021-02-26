@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.yukoon</groupId>
 	<artifactId>dmfls</artifactId>
-	<version>0.0.5-SNAPSHOT</version>
+	<version>0.0.5</version>
 	<name>dmfls</name>
 	<description>Demo project for Spring Boot</description>
 
@@ -388,7 +388,7 @@
 		<url>https://github.com/a5928497/dmfls.git</url>
 		<connection>scm:git:https://github.com/a5928497/dmfls.git</connection>
 		<developerConnection>scm:git:https://github.com/a5928497/dmfls.git</developerConnection>
-		<tag>0.0.1</tag>
+		<tag>0.0.5</tag>
 	</scm>
 	<distributionManagement>
 		<repository>
