@@ -2,9 +2,9 @@ spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     driver-class-name: org.gjt.mm.mysql.Driver
-    url: jdbc:mysql://192.168.88.242:3306/dmfls
-    username: root
-    password: 123456
+    url: jdbc:mysql://${DB_HOST}/dmfls?createDatabaseIfNotExist=true&useUnicode=true&characterEncoding=UTF-8
+        username: ${DB_USER}
+        password: ${DB_PASSWORD}
     dbcp2:
           #最小连接数
           min-idle: 5
