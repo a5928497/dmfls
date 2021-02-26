@@ -14,6 +14,6 @@ public class EncodeUtil {
 	}
 
 	public static void main(String[] args) {
-		System.out.println(encodePassword("dm8888","dmfls"));
+		System.out.println(encodePassword("dm9999","dmfls"));
 	}
 }
