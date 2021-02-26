@@ -20,6 +20,13 @@ public class Details {
 	@Column(name = "des")
 	private String des;
 
+	//0隐藏，1显示
+	@Column(name = "IS_SHOW")
+	private Integer is_show;
+
+	@Column(name = "ORDER_NO")
+	private Integer order;
+
 	@JoinColumn(name = "sc_id")
 	@ManyToOne
 	private Securities securities;

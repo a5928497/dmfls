@@ -46,9 +46,9 @@ public class IN_Controller {
 	//新增亮点
 	@PostMapping("/in")
 	public String addSC(ImportantNotice importantNotice) {
+		importantNotice.setIs_show(1);
 		importantNotice = in_service.save(importantNotice);
 		Securities securities = importantNotice.getSecurities();
-		System.out.println(securities);
 		return "redirect:/allIn/" + securities.getId();
 	}
 

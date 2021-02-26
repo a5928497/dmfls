@@ -46,9 +46,9 @@ public class DetailsController {
 	//新增亮点
 	@PostMapping("/details")
 	public String addDetails(Details details) {
+		details.setIs_show(1);
 		details = detailsService.save(details);
 		Securities securities = details.getSecurities();
-		System.out.println(securities);
 		return "redirect:/allDetails/" + securities.getId();
 	}
 
