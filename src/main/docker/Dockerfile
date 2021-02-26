@@ -17,6 +17,6 @@ RUN mkdir -p $WORKSPACE
 # 将jar包添加到容器中并更名为app.jar
 ADD dmfls.jar /app.jar
 # 容器暴露端口
-EXPOSE 8080
+EXPOSE 80
 # 容器启动时要运行的命令
 ENTRYPOINT ["java","-Dspring.profiles.active=prod","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
