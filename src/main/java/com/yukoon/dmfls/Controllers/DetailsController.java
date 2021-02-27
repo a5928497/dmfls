@@ -27,6 +27,16 @@ public class DetailsController {
 		}
 	}
 
+	//开启关闭显示
+	@GetMapping("/showdetails/{details_id}")
+	public String showSwitch(@PathVariable("details_id")Integer details_id){
+		Details details = detailsService.findById(details_id);
+		Boolean show = !details.getShowFlag();
+		details.setShowFlag(show);
+		details = detailsService.save(details);
+		return "redirect:/allDetails/" + details.getSecurities().getId();
+	}
+
 	//查找券商下所有亮点
 	@GetMapping("/allDetails/{sc_id}")
 	public String findAllScDetails(@PathVariable("sc_id")Integer sc_id,Map<String,Object> map){
@@ -46,7 +56,7 @@ public class DetailsController {
 	//新增亮点
 	@PostMapping("/details")
 	public String addDetails(Details details) {
-		details.setIs_show(1);
+//		details.setIs_show(true);
 		details = detailsService.save(details);
 		Securities securities = details.getSecurities();
 		return "redirect:/allDetails/" + securities.getId();

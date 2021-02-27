@@ -27,6 +27,16 @@ public class IN_Controller {
 		}
 	}
 
+	//开启关闭显示
+	@GetMapping("/showin/{in_id}")
+	public String showSwitch(@PathVariable("in_id")Integer in_id){
+		ImportantNotice importantNotice = in_service.findById(in_id);
+		Boolean show = !importantNotice.getShowFlag();
+		importantNotice.setShowFlag(show);
+		importantNotice = in_service.save(importantNotice);
+		return "redirect:/allIn/" + importantNotice.getSecurities().getId();
+	}
+
 	//查找券商下所有亮点
 	@GetMapping("/allIn/{sc_id}")
 	public String findAllScIn(@PathVariable("sc_id")Integer sc_id,Map<String,Object> map){
@@ -46,7 +56,7 @@ public class IN_Controller {
 	//新增亮点
 	@PostMapping("/in")
 	public String addSC(ImportantNotice importantNotice) {
-		importantNotice.setIs_show(1);
+		importantNotice.setShowFlag(true);
 		importantNotice = in_service.save(importantNotice);
 		Securities securities = importantNotice.getSecurities();
 		return "redirect:/allIn/" + securities.getId();

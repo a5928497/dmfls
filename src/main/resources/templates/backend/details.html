@@ -58,6 +58,9 @@
                                         <a th:href="@{/editdetails/}+${detail.id}"><button class="btn btn-sm">编辑</button></a>
                                     </td>
                                     <td>
+                                        <a th:href="@{/showdetails/}+${detail.id}"><button class="btn btn-sm" th:text="${detail.showFlag == true}?隐藏:显示"></button></a>
+                                    </td>
+                                    <td>
                                         <a th:href="@{/deldetails/}+${detail.id}"><button class="btn btn-sm">删除</button></a>
                                     </td>
                                 </tr>

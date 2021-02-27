@@ -23,6 +23,13 @@ public class SCServices {
 		return securities;
 	}
 
+	//查找所有显示的券商并排序
+	public List<Securities> findAllShowSC(){
+		List<Securities> securities = securityRepo.findAllisShow(true);
+		Collections.sort(securities);
+		return securities;
+	}
+
 	//按照ID查找券商
 	public Securities findById(Integer id) {
 		return  securityRepo.findOne(id);

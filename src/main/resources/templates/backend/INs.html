@@ -60,6 +60,9 @@
                                     <td>
                                         <a th:href="@{/delin/}+${in.id}"><button class="btn btn-sm">删除</button></a>
                                     </td>
+                                    <td>
+                                        <a th:href="@{/showin/}+${in.id}"><button class="btn btn-sm" th:text="${in.showFlag == true}?隐藏:显示"></button></a>
+                                    </td>
                                 </tr>
                                 </tbody>
                                 <tfoot>

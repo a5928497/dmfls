@@ -17,6 +17,11 @@ public class INService {
 		return in_repo.findAll();
 	}
 
+	//查找所有展示的详情
+	public List<ImportantNotice> findAllIsshow(){
+		return in_repo.findAllisShow(true);
+	}
+
 	//根据亮点id寻找
 	public ImportantNotice findById(Integer id) {
 		return in_repo.findOne(id);

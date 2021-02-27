@@ -17,6 +17,11 @@ public class DetailsService {
 		return detailsRepo.findAll();
 	}
 
+	//查找所有展示的详情
+	public List<Details> findAllIsshow(){
+		return detailsRepo.findAllisShow(true);
+	}
+
 	//根据详情id寻找
 	public Details findById(Integer id) {
 		return detailsRepo.findOne(id);

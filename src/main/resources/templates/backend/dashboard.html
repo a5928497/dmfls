@@ -67,6 +67,9 @@
                                     <td>
                                         <a th:href="@{/SCnotopen/}+${sc.id}"><button class="btn btn-sm">开户情况</button></a>
                                     </td>
+                                    <td>
+                                        <a th:href="@{/showsc/}+${sc.id}"><button class="btn btn-sm" th:text="${sc.showFlag == true}?隐藏:显示"></button></a>
+                                    </td>
                                 </tr>
                                 </tbody>
                                 <tfoot>

@@ -21,9 +21,9 @@ public class ImportantNotice {
 	@Column(name = "des")
 	private String des;
 
-	//0隐藏，1显示
-	@Column(name = "IS_SHOW")
-	private Integer is_show;
+	//fasle隐藏，true显示
+	@Column(name = "SHOW_FLAG",columnDefinition = "bool default true")
+	private Boolean showFlag;
 
 	@Column(name = "ORDER_NO")
 	private Integer order;

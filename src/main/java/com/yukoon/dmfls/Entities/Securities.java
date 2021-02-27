@@ -33,6 +33,10 @@ public class Securities implements Comparable<Securities>{
 	@Column(name = "OP_BTN_TEXT")
 	private String opBtnText;
 
+	//fasle隐藏，true显示
+	@Column(name = "SHOW_FLAG",columnDefinition = "bool default true")
+	private Boolean showFlag;
+
 	@Override
 	public int compareTo(Securities o) {
 

@@ -32,9 +32,9 @@ public class FontController {
 	//进入主页
 	@GetMapping("/index")
 	public String index(Map<String,Object> map) {
-		List<Securities> securities = scServices.findAllSC();
-		List<ImportantNotice> importantNotices = inService.findAll();
-		List<Details> details = detailsService.findAll();
+		List<Securities> securities = scServices.findAllShowSC();
+		List<ImportantNotice> importantNotices = inService.findAllIsshow();
+		List<Details> details = detailsService.findAllIsshow();
 		map.put("scs",securities);
 		map.put("ins",importantNotices);
 		map.put("details",details);

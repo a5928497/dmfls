@@ -25,6 +25,16 @@ public class SCController {
 		}
 	}
 
+	//开启关闭显示
+	@GetMapping("/showsc/{sc_id}")
+	public String showSwitch(@PathVariable("sc_id")Integer sc_id){
+		Securities securities = scServices.findById(sc_id);
+		Boolean show = !securities.getShowFlag();
+		securities.setShowFlag(show);
+		securities = scServices.saveSC(securities);
+		return "redirect:/allSC";
+	}
+
 	//查找所欲券商
 	@GetMapping("/allSC")
 	public String getAllSC(Map<String,Object>map) {

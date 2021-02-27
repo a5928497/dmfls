@@ -11,4 +11,7 @@ public interface IN_Repo extends JpaRepository<ImportantNotice,Integer> {
 
 	@Query("select i from ImportantNotice i where i.securities.id = :scId")
 	public List<ImportantNotice> findAllByScId(@Param("scId") Integer sc_id);
+
+	@Query("select i from ImportantNotice i where i.showFlag = :showFlag")
+	public List<ImportantNotice> findAllisShow(@Param("showFlag")Boolean showFlag);
 }
