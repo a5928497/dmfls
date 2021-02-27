@@ -12,7 +12,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Data
 @Accessors(chain = true)
-public class Details {
+public class Details implements Comparable<Details> {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
@@ -30,4 +30,9 @@ public class Details {
 	@JoinColumn(name = "sc_id")
 	@ManyToOne
 	private Securities securities;
+
+	@Override
+	public int compareTo(Details o) {
+		return this.order - o.order;
+	}
 }

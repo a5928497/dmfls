@@ -13,7 +13,7 @@ import java.nio.channels.Channel;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class ImportantNotice {
+public class ImportantNotice implements Comparable<ImportantNotice>{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
@@ -31,4 +31,9 @@ public class ImportantNotice {
 	@JoinColumn(name = "sc_id")
 	@ManyToOne
 	private Securities securities;
+
+	@Override
+	public int compareTo(ImportantNotice o) {
+		return this.order - o.order;
+	}
 }
