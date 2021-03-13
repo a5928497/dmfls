@@ -1,7 +1,9 @@
 body {
+    text-align: center;
+}
+#all_container {
     width:375px;
-    mairgin:0 auto;
-    /*background-color: #fae7d9;*/
+    margin: 0 auto;
 }
 #oprecord_entrance_container{
     width: 375px;
